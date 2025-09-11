@@ -14,6 +14,9 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     excerpt = models.TextField(blank=True)
     updated_on = models.DateField(auto_now=True)
+    
+    class Meta:
+        ordering = ["-created_on"]
 
 class Comment(models.Model):
     post = models.ForeignKey(
@@ -23,7 +26,7 @@ class Comment(models.Model):
         User, on_delete=models.CASCADE, related_name='commenter'
     )
     body = models.TextField(null=False)
-    is_approved = models.BooleanField
+    is_approved = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
 
 
