@@ -28,13 +28,18 @@ SECRET_KEY = 'django-insecure-xucc#xl$eajys^pbv_jip0)1&e00#3ha#k$f$we1(=1bc^-33-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# Update allowed hosts and CSRF trusted origins from environment variable
-ALLOWED_HOSTS = []
-CSRF_TRUSTED_ORIGINS = []
+# Allowed hosts and CSRF trusted origins
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost", "http://127.0.0.1", "https://localhost", "https://127.0.0.1"]
+
 hosts = os.environ.get("HOST", "")
 if hosts:
-    ALLOWED_HOSTS = [h.strip() for h in hosts.split(",")]
-    CSRF_TRUSTED_ORIGINS = [f"https://{h.strip()}" for h in hosts.split(",") if h]
+    extra_hosts = [h.strip() for h in hosts.split(",") if h]
+    ALLOWED_HOSTS.extend(extra_hosts)
+    CSRF_TRUSTED_ORIGINS.extend(
+        [f"http://{h}" for h in extra_hosts] +
+        [f"https://{h}" for h in extra_hosts]
+    )
 
 # Application definition
 
