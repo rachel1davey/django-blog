@@ -15,14 +15,14 @@ class Post(models.Model):
     excerpt = models.TextField(blank=True)
     updated_on = models.DateField(auto_now=True)
 
-class Comment(models.model):
+class Comment(models.Model):
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name='comments'
     )
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='commenter'
     )
-    body = models.TextField(is_null=False)
+    body = models.TextField(null=False)
     is_approved = models.BooleanField
     created_on = models.DateTimeField(auto_now_add=True)
 
