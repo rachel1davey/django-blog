@@ -31,10 +31,10 @@ DEBUG = False
 # Update allowed hosts and CSRF trusted origins from environment variable
 ALLOWED_HOSTS = []
 CSRF_TRUSTED_ORIGINS = []
-host = os.environ.get("HOST")
-if host:
-    ALLOWED_HOSTS.append(host)
-    CSRF_TRUSTED_ORIGINS.append(f"https://{host}")
+hosts = os.environ.get("HOST", "")
+if hosts:
+    ALLOWED_HOSTS = [h.strip() for h in hosts.split(",")]
+    CSRF_TRUSTED_ORIGINS = [f"https://{h.strip()}" for h in hosts.split(",") if h]
 
 # Application definition
 
