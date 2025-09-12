@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'blog',
     'tailwind',
     'theme',
+    'django_summernote',
 ]
 
 TAILWIND_APP_NAME = 'theme'
