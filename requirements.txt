@@ -33,4 +33,4 @@ types-python-dateutil==2.9.0.20250822
 typing_extensions==4.15.0
 urllib3==2.5.0
 webencodings==0.5.1
-whitenoise==6.10.0
+whitenoise==5.3.0
