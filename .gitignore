@@ -13,7 +13,7 @@ static
 *.pot
 *.pyc
 env/
-blog/fixtures
+
 
 
             
