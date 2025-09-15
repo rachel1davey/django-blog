@@ -5,5 +5,5 @@ from .models import about
 def about(request):
 
     content = about.objects.order_by("title", "content", "updated_on").first()
-    
-    return (request, 'about.html')
+    about = get_object_or_404(content)
+    return (request, 'about.html', {"about": about})
