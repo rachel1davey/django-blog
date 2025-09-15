@@ -1,6 +1,9 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, get_object_or_404
+from .models import about
 # Create your views here.
 
-def index(request):
+def about(request):
+
+    content = about.objects.order_by("title", "content", "updated_on").first()
+    
     return (request, 'about.html')
