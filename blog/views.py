@@ -24,9 +24,13 @@ def post_detail(request, slug):
 
     queryset = Post.objects.filter(status=1) # filters through published posts as query set
     post = get_object_or_404(queryset, slug=slug) # post get object. basically means get object or return a http404 exception if it doesnt exist
+    comments = post.comments.all().order_by("-created_on")
+    comment_count = post.comments.filter(is_approved=True).count()
 
     return render(
         request,
         "blog/post_detail.html",
-        {"post": post},
+        {"post": post, 
+         "comments": comments,
+        "comment_count": comment_count,},
     )    
