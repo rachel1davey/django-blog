@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-xucc#xl$eajys^pbv_jip0)1&e00#3ha#k$f$we1(=1bc^-33-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Allowed hosts and CSRF trusted origins
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
@@ -53,9 +53,17 @@ INSTALLED_APPS = [
     'blog',
     'tailwind',
     'theme',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'django_summernote',
     'about',
 ]
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 TAILWIND_APP_NAME = 'theme'
 
