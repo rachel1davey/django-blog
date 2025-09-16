@@ -17,7 +17,7 @@ def about_me(request):
             form.save()
             messages.add_message(
                 request, messages.SUCCESS,
-                'ollaboration request received! I endeavor to respond within 2 working days.')
+                'Collaboration request received! I endeavor to respond within 2 working days.')
 
     return render(
         request,
