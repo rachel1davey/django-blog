@@ -4,7 +4,13 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 STATUS = ((0, "Draft"), (1, "Published"))
+"""
+Stores a single blod post in relation to :model ‘auth.User‘.
+"""
 class Post(models.Model):
+    """
+    Stores a single blog post in relation to :model:`auth.User`.
+    """
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
@@ -21,10 +27,14 @@ class Post(models.Model):
         ordering = ["-created_on"]
 
     def __str__(self):
+        """String representation of Post object."""
         return f"{self.title} | written by {self.author}"
        
 
 class Comment(models.Model):
+    """
+    Stores a single comment on a blog post.
+    """
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name='comments'
     )
@@ -39,6 +49,7 @@ class Comment(models.Model):
         ordering = ["created_on"]
     
     def __str__(self):
+        """String representation of Comment object."""
         return f"Comment {self.body} by {self.author}"
 
 

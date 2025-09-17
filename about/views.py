@@ -6,7 +6,11 @@ from django.contrib import messages
 
 def about_me(request):
     """
-    Renders the About page
+    Renders the About page and handles collaboration form submission.
+    Args:
+        request: Django HttpRequest object.
+    Returns:
+        Rendered about page with form and messages.
     """
     about = About.objects.all().order_by('-updated_on').first()
     form = CollaborateForm()

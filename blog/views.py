@@ -8,22 +8,21 @@ from .forms import CommentForm
 # Create your views here.
 
 class PostList(generic.ListView):
+    """
+    List view for published blog posts.
+    """
     queryset = Post.objects.filter(status=1)
     template_name = 'blog/index.html'
     paginate_by = 6
 
 def post_detail(request, slug):
     """
-    Display an individual :model:`blog.Post`.
-
-    **Context**
-
-    ``post``
-        An instance of :model:`blog.Post`.
-
-    **Template:**
-
-    :template:`blog/post_detail.html`
+    Display an individual blog post and its comments.
+    Args:
+        request: Django HttpRequest object.
+        slug: Slug of the post.
+    Returns:
+        Rendered post detail page.
     """
 
     queryset = Post.objects.filter(status=1) # filters through published posts as query set
@@ -59,7 +58,13 @@ def post_detail(request, slug):
 
 def comment_edit(request, slug, comment_id):
     """
-    view to edit comments
+    Edit a comment on a blog post.
+    Args:
+        request: Django HttpRequest object.
+        slug: Slug of the post.
+        comment_id: ID of the comment to edit.
+    Returns:
+        Redirects to post detail page.
     """
     if request.method == "POST":
 
@@ -81,7 +86,13 @@ def comment_edit(request, slug, comment_id):
     
 def comment_delete(request, slug, comment_id):
     """
-    view to delete comment
+    Delete a comment from a blog post.
+    Args:
+        request: Django HttpRequest object.
+        slug: Slug of the post.
+        comment_id: ID of the comment to delete.
+    Returns:
+        Redirects to post detail page.
     """
     queryset = Post.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
