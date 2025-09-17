@@ -31,6 +31,7 @@ DEBUG = True
 # Allowed hosts and CSRF trusted origins
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 CSRF_TRUSTED_ORIGINS = ["http://localhost", "http://127.0.0.1", "https://localhost", "https://127.0.0.1"]
+CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
 
 hosts = os.environ.get("HOST", "")
 if hosts:
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
     'blog',
     'tailwind',
     'theme',
@@ -60,6 +62,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'django_summernote',
+    'cloudinary',
     'about',
 ]
 
