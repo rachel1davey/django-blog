@@ -10,6 +10,20 @@ Stores a single blod post in relation to :model ‘auth.User‘.
 class Post(models.Model):
     """
     Stores a single blog post in relation to :model:`auth.User`.
+
+    Fields:
+        title (CharField)
+        slug (SlugField)
+        author (ForeignKey to User)
+        featured_image (CloudinaryField)
+        content (TextField)
+        created_on (DateTimeField)
+        status (IntegerField)
+        excerpt (TextField)
+        updated_on (DateTimeField)
+    Relations:
+        author: ForeignKey to User
+        comments: Reverse ForeignKey from Comment
     """
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -34,6 +48,16 @@ class Post(models.Model):
 class Comment(models.Model):
     """
     Stores a single comment on a blog post.
+
+    Fields:
+        post (ForeignKey to Post)
+        author (ForeignKey to User)
+        body (TextField)
+        is_approved (BooleanField)
+        created_on (DateTimeField)
+    Relations:
+        post: ForeignKey to Post
+        author: ForeignKey to User
     """
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name='comments'

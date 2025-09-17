@@ -6,6 +6,14 @@ from cloudinary.models import CloudinaryField
 class About(models.Model):
     """
     Model representing the About page content.
+
+    Fields:
+        title (CharField)
+        updated_on (DateTimeField)
+        content (TextField)
+        profile_image (CloudinaryField)
+    Relations:
+        None
     """
     title = models.CharField(max_length=200)
     updated_on = models.DateTimeField(auto_now=True)
@@ -19,6 +27,14 @@ class About(models.Model):
 class CollaborateRequest(models.Model):
     """
     Model representing a collaboration request.
+
+    Fields:
+        name (CharField)
+        email (EmailField)
+        message (TextField)
+        read (BooleanField)
+    Relations:
+        None
     """
     name = models.CharField(max_length=200)
     email = models.EmailField()
